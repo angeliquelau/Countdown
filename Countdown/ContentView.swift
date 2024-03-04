@@ -7,75 +7,98 @@
 
 import SwiftUI
 
+struct Event: Identifiable {
+    let id = UUID()
+    var eventTitle: String
+    var eventDesc: String
+}
+
+struct EventRowView: View {
+    var event: Event
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(event.eventTitle)
+                .font(.headline)
+            Text(event.eventDesc)
+                .font(.subheadline)
+        }
+        
+    }
+}
+
+struct PopUpView: View {
+    @State var newEventTitle: String = ""
+    @State var newEventDesc: String = ""
+    @State var dateAndTime = Date.now
+    
+    var body: some View {
+        VStack{
+            TextField("Event Title", text: $newEventTitle)
+            TextField("Event Description", text: $newEventDesc)
+            DatePicker("Select Date", selection: $dateAndTime)
+        }
+        
+    }
+}
+
 struct ContentView: View {
     @State private var showAlert = false
-    @State var timeRemaining: Int = 0
-    @State private var timeEntered: Int = 0
     
-    @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    @State var events = [
+        Event(eventTitle: "Flight to Thailand", eventDesc: "so excited!!!"),
+        Event(eventTitle: "Graduation Day", eventDesc: "what do i wear")
+    ]
     
     var body: some View {
         
-        ZStack {
-            Button("Enter time") {
-                showAlert.toggle()
-            }
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading) // Align to top right corner
-            .alert("Enter time duration (in seconds)", isPresented: $showAlert) {
-                TextField("Enter your time duration", value: $timeEntered, format: .number)
-                
-                Button("Done") {
-                    passTime()
-                }
-            }
-            
-            //convert seconds to hour:minute:second format
-            Text(String(format: "%02d:%02d:%02d", timeRemaining / 3600, timeRemaining % 3600 / 60, timeRemaining % 60))
-                .onReceive(timer) { date in
-                    if (timeRemaining > 0) {
-                        timeRemaining -= 1
-                        
+        NavigationView {
+            ZStack(alignment: .bottomTrailing)
+            {
+                List(events) { event in
+                    NavigationLink(destination: TimerView()) {
+                        EventRowView(event: event)
                     }
                 }
-                .font(.largeTitle)
-                .padding()
-        }
+                .navigationTitle("Events")
+                
         
-        HStack {
-            Button("Resume") {
-                timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                NavigationLink(destination: CreateEventView()) {
+                    Text("+")
+                        .font(.largeTitle)
+                        .frame(width:60, height: 60)
+                        .background(Color.teal)
+                        .cornerRadius(30)
+                        .foregroundColor(.white)
+                        .padding()
+//                    Button {
+//                    } label: {
+//                        Image(systemName: "plus")
+//                            .font(.title.weight(.semibold))
+//                            .padding()
+//                            .background(Color.teal)
+//                            .foregroundColor(.white)
+//                            .clipShape(Circle())
+//                            .shadow(radius: 4, x: 0, y: 4)
+//
+//                    }
+//                    .padding()
+                }
+                
+                
+                
             }
-            .foregroundColor(Color.white)
-            .frame(width:90, height: 35)
-            .background(Color.teal)
-            .cornerRadius(8.0)
             
-            Button("Pause") {
-                timer.upstream.connect().cancel()
-            }
-            .foregroundColor(Color.white)
-            .frame(width:90, height: 35)
-            .background(Color.teal)
-            .cornerRadius(8.0)
             
-            Button("Clear") {
-                timeRemaining = 0
-            }
-            .foregroundColor(Color.white)
-            .frame(width:90, height: 35)
-            .background(Color.teal)
-            .cornerRadius(8.0)
         }
-        .padding()
-    }
-    
-    
-    func passTime() {
-        timeRemaining = timeEntered; // i do this so the countdown won't start immediately after user enter the value. it will only start once user click done button
+            
+            
     }
 
 }
+
+
 
 #Preview {
     ContentView()

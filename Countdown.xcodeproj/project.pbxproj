@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0047E792B95A683008BBEFE /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0047E782B95A683008BBEFE /* CreateEventView.swift */; };
+		D0F50A5E2B91B58A00CA0335 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F50A5D2B91B58A00CA0335 /* TimerView.swift */; };
 		D0FD6EA92B886E1000962690 /* CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD6EA82B886E1000962690 /* CountdownApp.swift */; };
 		D0FD6EAB2B886E1000962690 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD6EAA2B886E1000962690 /* ContentView.swift */; };
 		D0FD6EAD2B886E1200962690 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0FD6EAC2B886E1200962690 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0047E782B95A683008BBEFE /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
+		D0F50A5D2B91B58A00CA0335 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		D0FD6EA52B886E1000962690 /* Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0FD6EA82B886E1000962690 /* CountdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownApp.swift; sourceTree = "<group>"; };
 		D0FD6EAA2B886E1000962690 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,10 +55,12 @@
 		D0FD6EA72B886E1000962690 /* Countdown */ = {
 			isa = PBXGroup;
 			children = (
+				D0F50A5D2B91B58A00CA0335 /* TimerView.swift */,
 				D0FD6EA82B886E1000962690 /* CountdownApp.swift */,
 				D0FD6EAA2B886E1000962690 /* ContentView.swift */,
 				D0FD6EAC2B886E1200962690 /* Assets.xcassets */,
 				D0FD6EAE2B886E1200962690 /* Preview Content */,
+				D0047E782B95A683008BBEFE /* CreateEventView.swift */,
 			);
 			path = Countdown;
 			sourceTree = "<group>";
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0F50A5E2B91B58A00CA0335 /* TimerView.swift in Sources */,
+				D0047E792B95A683008BBEFE /* CreateEventView.swift in Sources */,
 				D0FD6EAB2B886E1000962690 /* ContentView.swift in Sources */,
 				D0FD6EA92B886E1000962690 /* CountdownApp.swift in Sources */,
 			);
